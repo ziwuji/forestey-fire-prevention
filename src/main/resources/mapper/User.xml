@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserDao">
+<select id="selectByPhone" resultType="com.dao.bean.User">
+		select *
+		from user
+		where phone=#{phone};
+	</select>
+
+    <select id="User" resultType="com.dao.bean.User">
+        select id,uName,phone,email,department from user where id=#{userId}
+    </select>
+    <select id="isAdministrator" resultType="java.Lang.Integer">
+        select status from user where id={userId}
+    </select>
+    <update id="setAdministrator">
+        update user set status=#{status} where id=#{userId}
+    </update>
+    <insert id="insertUser">
+        insert info user(department,phone,username,pwd,email,status)
+        values (#{department},#{phone},#{username},#{pwd},#{email},#{status});
+        </insert>
+</mapper>
