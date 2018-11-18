@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import com.dao.bean.User;
 public interface UserDao {
 	User selectByPhone(@Param("phone") String phone);
-	User selectByEmail(String email);
-	User selectByUserId(long userId);
+	User selectByEmail(@Param("email") String email);
+	User selectByUserId(@Param("userId") long userId);
 	
     //public List <User> list(@Param("userId")long userId);
     public Integer isAdministrator(@Param("userId")long userId);

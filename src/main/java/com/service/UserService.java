@@ -105,5 +105,22 @@ public class UserService {
 		// TODO Auto-generated method stub
 		return "userinfo:"+sessionid;
 	}
+
+	public boolean isAdministrator(long userId) {
+		// TODO Auto-generated method stub
+		Integer status = this.userDao.isAdministrator(userId);
+		return status !=null && status.intValue()==1;
+	}
+
+	public void setAdministrator(long userId, boolean administrator) {
+		// TODO Auto-generated method stub
+		int status;
+		if(administrator==false) {
+			status=0;
+		}else {
+			status=1;
+		}
+		this.userDao.setAdministrator(userId, status);
+	}
 	
 }

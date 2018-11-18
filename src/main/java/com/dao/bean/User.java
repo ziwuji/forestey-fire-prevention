@@ -1,7 +1,7 @@
 package com.dao.bean;
 /**
  * @author ziwuji
- * @description:ÓÃ»§µÇÂ¼×¢²á
+ * @description:ç”¨æˆ·
  */
 public class User {
 	private long userId;

@@ -6,18 +6,18 @@ import java.util.Random;
 
 /**
  * @Auther: ziwuji
- * @Description:´´½¨ÑéÖ¤Âë
+ * @Description:åˆ›å»ºéªŒè¯ç 
  */
 public class CreateYZMCodeUtils {
-    private Integer width;//ÑéÖ¤ÂëÍ¼Æ¬¿í¶È
-    private Integer height;//ÑéÖ¤ÂğÍ¼Æ¬¸ß¶È
-    private Integer num;//ÑéÖ¤ÂëµÄ¸öÊı
-    private String code;//Éú³ÉÑéÖ¤ÂëÒ»×é×Ö·û´®
+    private Integer width;//éªŒè¯ç å›¾ç‰‡å®½åº¦
+    private Integer height;//éªŒè¯å—å›¾ç‰‡é«˜åº¦
+    private Integer num;//éªŒè¯ç çš„ä¸ªæ•°
+    private String code;//ç”ŸæˆéªŒè¯ç ä¸€ç»„å­—ç¬¦ä¸²
 
-    private static final Random ran=new Random();//Ëæ»úÊı
+    private static final Random ran=new Random();//éšæœºæ•°
     private static CreateYZMCodeUtils createYZMCodeUtils;
     /**
-     * Í¨¹ıÄ¬ÈÏ¹¹Ôì³õÊ¼»¯²ÎÊı
+     * é€šè¿‡é»˜è®¤æ„é€ åˆå§‹åŒ–å‚æ•°
      */
     private CreateYZMCodeUtils(){
         width=100;
@@ -26,7 +26,7 @@ public class CreateYZMCodeUtils {
         num=4;
     }
     /**
-     * ÀûÓÃµ¥ÀûÄ£Ê½´´½¨¸ÃÑéÖ¤Âë¹¤¾ßÀà
+     * åˆ©ç”¨å•åˆ©æ¨¡å¼åˆ›å»ºè¯¥éªŒè¯ç å·¥å…·ç±»
      * @return
      */
     public static CreateYZMCodeUtils getInstance(){
@@ -82,7 +82,7 @@ public class CreateYZMCodeUtils {
         this.code=code;
     }
     /**
-     * Ëæ»úÉú³ÉÑéÖ¤Âë Éú³ÉÑéÖ¤ÂëµÄÒ»×é×Ö·û´®
+     * éšæœºç”ŸæˆéªŒè¯ç  ç”ŸæˆéªŒè¯ç çš„ä¸€ç»„å­—ç¬¦ä¸²
      * @return
      */
     public String getCreateYZMCode(){
@@ -93,39 +93,40 @@ public class CreateYZMCodeUtils {
         return sb.toString();
     }
     /**
-     * Éú³Ébuffere ImageÍ¼Æ¬
-     * @param finshCode Éú³ÉºÃµÄÑéÖ¤Âë×Ö·û´®
+     * ç”Ÿæˆbuffere Imageå›¾ç‰‡
+     * @param finshCode ç”Ÿæˆå¥½çš„éªŒè¯ç å­—ç¬¦ä¸²
      * @return
      */
     public BufferedImage getCreateYZMImg(String finshCode){
-        // ´´½¨BufferedImage¶ÔÏó
+        // åˆ›å»ºBufferedImageå¯¹è±¡
         BufferedImage img = new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB);
-        Graphics2D graphic = img.createGraphics();// ´´½¨»­±Ê
-        graphic.setColor(Color.WHITE);// ÉèÖÃÑÕÉ«
-        graphic.fillRect(0, 0, width, height);//ÊÇÓÃÔ¤¶¨µÄÑÕÉ«Ìî³äÒ»¸ö¾ØĞÎ£¬µÃµ½Ò»¸ö×ÅÉ«µÄ¾ØĞÎ¿é¡£
+        Graphics2D graphic = img.createGraphics();// åˆ›å»ºç”»ç¬”
+        graphic.setColor(Color.WHITE);// è®¾ç½®é¢œè‰²
+        graphic.fillRect(0, 0, width, height);//æ˜¯ç”¨é¢„å®šçš„é¢œè‰²å¡«å……ä¸€ä¸ªçŸ©å½¢ï¼Œå¾—åˆ°ä¸€ä¸ªç€è‰²çš„çŸ©å½¢å—ã€‚
         graphic.setColor(Color.black);
-//        graphic.drawRect(0, 0, width - 1, height - 1);// »­Õı·½ĞÎ
-        // ÉèÖÃ×ÖÌå ·ç¸ñ ·ç¸ñ ¸ß¶È
-        Font font = new Font("Î¢ÈíÑÅºÚ", Font.BOLD + Font.ITALIC,(int) (height * 0.8));
+//        graphic.drawRect(0, 0, width - 1, height - 1);// ç”»æ­£æ–¹å½¢
+        // è®¾ç½®å­—ä½“ é£æ ¼ é£æ ¼ é«˜åº¦
+        Font font = new Font("å¾®è½¯é›…é»‘", Font.BOLD + Font.ITALIC,(int) (height * 0.8));
         graphic.setFont(font);
         for (int i = 0; i < num; i++) {
-            // Ëæ»úÉèÖÃ×ÖÌåRGBÑÕÉ«
+            // éšæœºè®¾ç½®å­—ä½“RGBé¢œè‰²
             graphic.setColor(new Color(ran.nextInt(255), ran.nextInt(255),ran.nextInt(255)));
-            // »­³öÑéÖ¤Âë
+            // ç”»å‡ºéªŒè¯ç 
             graphic.drawString(String.valueOf(finshCode.charAt(i)), i* (width / num) + 4, (int) (height * 0.8));
         }
         for (int i = 0; i < (width + height); i++) {
-            // Ëæ»úÉèÖÃ×ÖÌåRGBÑÕÉ«
+            // éšæœºè®¾ç½®å­—ä½“RGBé¢œè‰²
             graphic.setColor(new Color(ran.nextInt(255), ran.nextInt(255),ran.nextInt(255)));
-            // Éú³É¸ÉÈÅµã
+            // ç”Ÿæˆå¹²æ‰°ç‚¹
             graphic.drawOval(ran.nextInt(width), ran.nextInt(height), 1, 1);
         }
         for(int i = 0; i <2; i++){
-            // Ëæ»úÉèÖÃ×ÖÌåRGBÑÕÉ«
+            // éšæœºè®¾ç½®å­—ä½“RGBé¢œè‰²
             graphic.setColor(new Color(ran.nextInt(255), ran.nextInt(255),ran.nextInt(255)));
-            // Ëæ»úÉú³É¸ÉÈÅÏß
+            // éšæœºç”Ÿæˆå¹²æ‰°çº¿
             graphic.drawLine(0, ran.nextInt(height), width,ran.nextInt(height));
         }
         return img;
     }
 }
+

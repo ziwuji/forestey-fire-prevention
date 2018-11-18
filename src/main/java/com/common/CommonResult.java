@@ -1,8 +1,8 @@
-package com.common;
+																															package com.common;
 
 /**
  * @Auther: ziwuji
- * @Description: HTTPÇëÇó·µ»ØJSON¸ñÊ½¹«¹²Àà
+ * @Description: HTTPè¯·æ±‚è¿”å›JSONæ ¼å¼å…¬å…±ç±»
  */
 
 public class CommonResult<T> {
@@ -13,7 +13,7 @@ public class CommonResult<T> {
 	private String msg;
 	private T data;
 	private long time;
-
+																					
 	public CommonResult(int code, String msg) {
 		this(code, msg, null);
 	}

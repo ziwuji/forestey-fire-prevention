@@ -2,7 +2,7 @@ package com.dao.bean;
 
 /**
  *@author: ziwuji
- *@description: ±¨¾¯ÊÓÆµ
+ *@description: æŠ¥è­¦è§†é¢‘
  */
 public class AlarmVideo {
 	private long id;

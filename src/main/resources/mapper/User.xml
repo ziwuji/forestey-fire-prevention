@@ -8,7 +8,7 @@
 	</select>
 
     <select id="User" resultType="com.dao.bean.User">
-        select id,uName,phone,email,department from user where id=#{userId}
+        select id,username,phone,email,department from user where id=#{userId}
     </select>
     <select id="isAdministrator" resultType="java.Lang.Integer">
         select status from user where id={userId}
@@ -19,5 +19,5 @@
     <insert id="insertUser">
         insert info user(department,phone,username,pwd,email,status)
         values (#{department},#{phone},#{username},#{pwd},#{email},#{status});
-        </insert>
+     </insert>
 </mapper>

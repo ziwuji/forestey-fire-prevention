@@ -17,17 +17,17 @@ import com.aliyuncs.profile.IClientProfile;
 
 public class SmsUtils {
 
-	// ³õÊ¼»¯ascClientĞèÒªµÄ¼¸¸ö²ÎÊı
-	final static String product = "Dysmsapi";// ¶ÌĞÅAPI²úÆ·Ãû³Æ£¨¶ÌĞÅ²úÆ·Ãû¹Ì¶¨£¬ÎŞĞèĞŞ¸Ä£©
-	final static String domain = "dysmsapi.aliyuncs.com";// ¶ÌĞÅAPI²úÆ·ÓòÃû£¨½Ó¿ÚµØÖ·¹Ì¶¨£¬ÎŞĞèĞŞ¸Ä£©
-	// Ìæ»»³ÉÄãµÄAK
-	final static String accessKeyId = "LTAIMbxYwtwGXLyq";// ÄãµÄaccessKeyId,²Î¿¼±¾ÎÄµµ²½Öè2
-	final static String accessKeySecret = "fV9H2abdHPdNVk9rvS0dxiXV2QKHbZ";// ÄãµÄaccessKeySecret£¬²Î¿¼±¾ÎÄµµ²½Öè2
+	// åˆå§‹åŒ–ascClientéœ€è¦çš„å‡ ä¸ªå‚æ•°
+	final static String product = "Dysmsapi";// çŸ­ä¿¡APIäº§å“åç§°ï¼ˆçŸ­ä¿¡äº§å“åå›ºå®šï¼Œæ— éœ€ä¿®æ”¹ï¼‰
+	final static String domain = "dysmsapi.aliyuncs.com";// çŸ­ä¿¡APIäº§å“åŸŸåï¼ˆæ¥å£åœ°å€å›ºå®šï¼Œæ— éœ€ä¿®æ”¹ï¼‰
+	// æ›¿æ¢æˆä½ çš„AK
+	final static String accessKeyId = "LTAIMbxYwtwGXLyq";// ä½ çš„accessKeyId,å‚è€ƒæœ¬æ–‡æ¡£æ­¥éª¤2
+	final static String accessKeySecret = "fV9H2abdHPdNVk9rvS0dxiXV2QKHbZ";// ä½ çš„accessKeySecretï¼Œå‚è€ƒæœ¬æ–‡æ¡£æ­¥éª¤2
 
-	// ³õÊ¼»¯ascClient,ÔİÊ±²»Ö§³Ö¶àregion£¨ÇëÎğĞŞ¸Ä£©
+	// åˆå§‹åŒ–ascClient,æš‚æ—¶ä¸æ”¯æŒå¤šregionï¼ˆè¯·å‹¿ä¿®æ”¹ï¼‰
 	static IAcsClient acsClient;
 	static {
-		// ÉèÖÃ³¬Ê±Ê±¼ä-¿É×ÔĞĞµ÷Õû
+		// è®¾ç½®è¶…æ—¶æ—¶é—´-å¯è‡ªè¡Œè°ƒæ•´
 		System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
 		System.setProperty("sun.net.client.defaultReadTimeout", "10000");
 
@@ -43,27 +43,27 @@ public class SmsUtils {
 	public static void send(String phone, String code) throws ServerException, ClientException {
 		Map<String, String> body = new HashMap<String, String >();
 		body.put("code", code);
-		// ×é×°ÇëÇó¶ÔÏó
+		// ç»„è£…è¯·æ±‚å¯¹è±¡
 		SendSmsRequest request = new SendSmsRequest();
-		// Ê¹ÓÃpostÌá½»
+		// ä½¿ç”¨postæäº¤
 		request.setMethod(MethodType.POST);
-		// ±ØÌî:´ı·¢ËÍÊÖ»úºÅ¡£Ö§³ÖÒÔ¶ººÅ·Ö¸ôµÄĞÎÊ½½øĞĞÅúÁ¿µ÷ÓÃ£¬ÅúÁ¿ÉÏÏŞÎª1000¸öÊÖ»úºÅÂë,ÅúÁ¿µ÷ÓÃÏà¶ÔÓÚµ¥Ìõµ÷ÓÃ¼°Ê±ĞÔÉÔÓĞÑÓ³Ù,ÑéÖ¤ÂëÀàĞÍµÄ¶ÌĞÅÍÆ¼öÊ¹ÓÃµ¥Ìõµ÷ÓÃµÄ·½Ê½£»·¢ËÍ¹ú¼Ê/¸Û°ÄÌ¨ÏûÏ¢Ê±£¬½ÓÊÕºÅÂë¸ñÊ½Îª00+¹ú¼ÊÇøºÅ+ºÅÂë£¬Èç¡°0085200000000¡±
+		// å¿…å¡«:å¾…å‘é€æ‰‹æœºå·ã€‚æ”¯æŒä»¥é€—å·åˆ†éš”çš„å½¢å¼è¿›è¡Œæ‰¹é‡è°ƒç”¨ï¼Œæ‰¹é‡ä¸Šé™ä¸º1000ä¸ªæ‰‹æœºå·ç ,æ‰¹é‡è°ƒç”¨ç›¸å¯¹äºå•æ¡è°ƒç”¨åŠæ—¶æ€§ç¨æœ‰å»¶è¿Ÿ,éªŒè¯ç ç±»å‹çš„çŸ­ä¿¡æ¨èä½¿ç”¨å•æ¡è°ƒç”¨çš„æ–¹å¼ï¼›å‘é€å›½é™…/æ¸¯æ¾³å°æ¶ˆæ¯æ—¶ï¼Œæ¥æ”¶å·ç æ ¼å¼ä¸º00+å›½é™…åŒºå·+å·ç ï¼Œå¦‚â€œ0085200000000â€
 		request.setPhoneNumbers(phone);
-		// ±ØÌî:¶ÌĞÅÇ©Ãû-¿ÉÔÚ¶ÌĞÅ¿ØÖÆÌ¨ÖĞÕÒµ½
-		request.setSignName("°¢ÀïÔÆ¶ÌĞÅ²âÊÔ×¨ÓÃ");
-		// ±ØÌî:¶ÌĞÅÄ£°å-¿ÉÔÚ¶ÌĞÅ¿ØÖÆÌ¨ÖĞÕÒµ½£¬·¢ËÍ¹ú¼Ê/¸Û°ÄÌ¨ÏûÏ¢Ê±£¬ÇëÊ¹ÓÃ¹ú¼Ê/¸Û°ÄÌ¨¶ÌĞÅÄ£°æ
+		// å¿…å¡«:çŸ­ä¿¡ç­¾å-å¯åœ¨çŸ­ä¿¡æ§åˆ¶å°ä¸­æ‰¾åˆ°
+		request.setSignName("é˜¿é‡Œäº‘çŸ­ä¿¡æµ‹è¯•ä¸“ç”¨");
+		// å¿…å¡«:çŸ­ä¿¡æ¨¡æ¿-å¯åœ¨çŸ­ä¿¡æ§åˆ¶å°ä¸­æ‰¾åˆ°ï¼Œå‘é€å›½é™…/æ¸¯æ¾³å°æ¶ˆæ¯æ—¶ï¼Œè¯·ä½¿ç”¨å›½é™…/æ¸¯æ¾³å°çŸ­ä¿¡æ¨¡ç‰ˆ
 		request.setTemplateCode("SMS_139920142");
-		// ¿ÉÑ¡:Ä£°åÖĞµÄ±äÁ¿Ìæ»»JSON´®,ÈçÄ£°åÄÚÈİÎª"Ç×°®µÄ${name},ÄúµÄÑéÖ¤ÂëÎª${code}"Ê±,´Ë´¦µÄÖµÎª
-		// ÓÑÇéÌáÊ¾:Èç¹ûJSONÖĞĞèÒª´ø»»ĞĞ·û,Çë²ÎÕÕ±ê×¼µÄJSONĞ­Òé¶Ô»»ĞĞ·ûµÄÒªÇó,±ÈÈç¶ÌĞÅÄÚÈİÖĞ°üº¬\r\nµÄÇé¿öÔÚJSONÖĞĞèÒª±íÊ¾³É\\r\\n,·ñÔò»áµ¼ÖÂJSONÔÚ·şÎñ¶Ë½âÎöÊ§°Ü
+		// å¯é€‰:æ¨¡æ¿ä¸­çš„å˜é‡æ›¿æ¢JSONä¸²,å¦‚æ¨¡æ¿å†…å®¹ä¸º"äº²çˆ±çš„${name},æ‚¨çš„éªŒè¯ç ä¸º${code}"æ—¶,æ­¤å¤„çš„å€¼ä¸º
+		// å‹æƒ…æç¤º:å¦‚æœJSONä¸­éœ€è¦å¸¦æ¢è¡Œç¬¦,è¯·å‚ç…§æ ‡å‡†çš„JSONåè®®å¯¹æ¢è¡Œç¬¦çš„è¦æ±‚,æ¯”å¦‚çŸ­ä¿¡å†…å®¹ä¸­åŒ…å«\r\nçš„æƒ…å†µåœ¨JSONä¸­éœ€è¦è¡¨ç¤ºæˆ\\r\\n,å¦åˆ™ä¼šå¯¼è‡´JSONåœ¨æœåŠ¡ç«¯è§£æå¤±è´¥
 		request.setTemplateParam(JSON.toJSONString(body));
-		// ¿ÉÑ¡-ÉÏĞĞ¶ÌĞÅÀ©Õ¹Âë(À©Õ¹Âë×Ö¶Î¿ØÖÆÔÚ7Î»»òÒÔÏÂ£¬ÎŞÌØÊâĞèÇóÓÃ»§ÇëºöÂÔ´Ë×Ö¶Î)
+		// å¯é€‰-ä¸Šè¡ŒçŸ­ä¿¡æ‰©å±•ç (æ‰©å±•ç å­—æ®µæ§åˆ¶åœ¨7ä½æˆ–ä»¥ä¸‹ï¼Œæ— ç‰¹æ®Šéœ€æ±‚ç”¨æˆ·è¯·å¿½ç•¥æ­¤å­—æ®µ)
 		// request.setSmsUpExtendCode("90997");
-		// ¿ÉÑ¡:outIdÎªÌá¹©¸øÒµÎñ·½À©Õ¹×Ö¶Î,×îÖÕÔÚ¶ÌĞÅ»ØÖ´ÏûÏ¢ÖĞ½«´ËÖµ´ø»Ø¸øµ÷ÓÃÕß
+		// å¯é€‰:outIdä¸ºæä¾›ç»™ä¸šåŠ¡æ–¹æ‰©å±•å­—æ®µ,æœ€ç»ˆåœ¨çŸ­ä¿¡å›æ‰§æ¶ˆæ¯ä¸­å°†æ­¤å€¼å¸¦å›ç»™è°ƒç”¨è€…
 		// request.setOutId("yourOutId");
-		// ÇëÇóÊ§°ÜÕâÀï»áÅ×ClientExceptionÒì³£
+		// è¯·æ±‚å¤±è´¥è¿™é‡Œä¼šæŠ›ClientExceptionå¼‚å¸¸
 		SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
 		if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
-			System.out.println("ÇëÇó³É¹¦£¡");
+			System.out.println("è¯·æ±‚æˆåŠŸï¼");
 		}
 	}
 

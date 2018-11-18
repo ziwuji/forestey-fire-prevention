@@ -16,7 +16,7 @@ public class BaseUtils {
 
 
 	/**
-	 * ÑéÖ¤ÊÇ·ñÎªÊÖ»úºÅ
+	 * éªŒè¯æ˜¯å¦ä¸ºæ‰‹æœºå·
 	 *
 	 * @param phone
 	 *
@@ -34,7 +34,7 @@ public class BaseUtils {
 	}
 
 	/**
-	 * ÑéÖ¤ÊÇ·ñÎªemail
+	 * éªŒè¯æ˜¯å¦ä¸ºemail
 	 *
 	 * @param email
 	 *
@@ -50,7 +50,7 @@ public class BaseUtils {
 	}
 
 	/**
-	 * ÑéÖ¤ÃÜÂëÊÇ·ñÕıÈ· ÃÜÂëÒªÇó£º8µ½20Î»Êı×Ö»òÕß×ÖÄ¸»òÕßÏÂ»®Ïß×é³É£¬²»ÄÜ´¿Êı×Ö»òÕß×ÖÄ¸£¬¿ÉÒÔ²»°üÀ¨ÏÂ»®Ïß
+	 * éªŒè¯å¯†ç æ˜¯å¦æ­£ç¡® å¯†ç è¦æ±‚ï¼š8åˆ°20ä½æ•°å­—æˆ–è€…å­—æ¯æˆ–è€…ä¸‹åˆ’çº¿ç»„æˆï¼Œä¸èƒ½çº¯æ•°å­—æˆ–è€…å­—æ¯ï¼Œå¯ä»¥ä¸åŒ…æ‹¬ä¸‹åˆ’çº¿
 	 *
 	 * @param password
 	 *
@@ -66,7 +66,7 @@ public class BaseUtils {
 	}
 
 	/**
-	 * ÑéÖ¤ÕæÊµĞÕÃû¸ñÊ½ ÒªÇó£º2-20Î»ºº×ÖÖĞÎÄÃû/2-20Î»×ÖÄ¸ÍâÎÄÃû£¬¿ÉÒÔ°üÀ¨¿Õ¸ñ»òÕß ¡¤
+	 * éªŒè¯çœŸå®å§“åæ ¼å¼ è¦æ±‚ï¼š2-20ä½æ±‰å­—ä¸­æ–‡å/2-20ä½å­—æ¯å¤–æ–‡åï¼Œå¯ä»¥åŒ…æ‹¬ç©ºæ ¼æˆ–è€… Â·
 	 *
 	 * */
 	public static void checkRealName(String realName){
@@ -80,7 +80,7 @@ public class BaseUtils {
 	}
 
 	/**
-	 * ÑéÖ¤ÓÃ»§Ãû¸ñÊ½ ÒªÇó£º6-8Î»Êı×Ö´óĞ¡Ğ´×ÖÄ¸»òÕßÏÂ»®Ïß
+	 * éªŒè¯ç”¨æˆ·åæ ¼å¼ è¦æ±‚ï¼š6-8ä½æ•°å­—å¤§å°å†™å­—æ¯æˆ–è€…ä¸‹åˆ’çº¿
 	 *
 	 * */
 	public static void checkUsername(String username){
@@ -94,7 +94,7 @@ public class BaseUtils {
 	}
 
 	/**
-	 * ÑéÖ¤×Ö·û´®ÊÇ·ñÎª¿Õ
+	 * éªŒè¯å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©º
 	 *
 	 */
 	public static boolean isNullOrEmpty(String string) {
@@ -105,7 +105,7 @@ public class BaseUtils {
 	}
 
 	/**
-	 * MD5¼ÓÃÜ
+	 * MD5åŠ å¯†
 	 *
 	 */
 	public static String md5(String plainText) {
@@ -113,10 +113,10 @@ public class BaseUtils {
 		try {
 			secretBytes = MessageDigest.getInstance("md5").digest(plainText.getBytes());
 		} catch (NoSuchAlgorithmException e) {
-			throw new RuntimeException("Ã»ÓĞmd5Õâ¸öËã·¨£¡");
+			throw new RuntimeException("æ²¡æœ‰md5è¿™ä¸ªç®—æ³•ï¼");
 		}
-		String md5code = new BigInteger(1, secretBytes).toString(16);// 16½øÖÆÊı×Ö
-		// Èç¹ûÉú³ÉÊı×ÖÎ´Âú32Î»£¬ĞèÒªÇ°Ãæ²¹0
+		String md5code = new BigInteger(1, secretBytes).toString(16);// 16è¿›åˆ¶æ•°å­—
+		// å¦‚æœç”Ÿæˆæ•°å­—æœªæ»¡32ä½ï¼Œéœ€è¦å‰é¢è¡¥0
 		for (int i = 0; i < 32 - md5code.length(); i++) {
 			md5code = "0" + md5code;
 		}
@@ -124,3 +124,4 @@ public class BaseUtils {
 	}
 
 }
+

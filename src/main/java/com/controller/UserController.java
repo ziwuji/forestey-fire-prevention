@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.exceptions.ClientException;
 import com.common.CommonResult;
 import com.dao.res.UserLoginResult;
@@ -33,7 +34,7 @@ import com.util.SmsUtils;
 
 /**
  * @author ziwuji
- *@description: ÓÃ»§µÇÂ¼×¢²áÒÔ¼°ÑéÖ¤
+ *@description: ç”¨æˆ·ç™»å½•æ³¨å†Œä»¥åŠéªŒè¯
  */
 @Controller
 @RequestMapping("/user")
@@ -50,7 +51,7 @@ public class UserController {
 	private RedisService redisService;
 	
 	/**
-	 * »ñÈ¡ÓÃ»§µÇÂ¼ĞÅÏ¢(ÊÇ·ñµÇÂ¼)
+	 * è·å–ç”¨æˆ·ç™»å½•ä¿¡æ¯(æ˜¯å¦ç™»å½•)
 	 * 
 	 */
 	@RequestMapping(value="/info",method=RequestMethod.GET)
@@ -65,7 +66,7 @@ public class UserController {
 	}
 	
 	/**
-	 * µÇÂ¼
+	 * ç™»å½•
 	 * @return
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST)
@@ -86,7 +87,7 @@ public class UserController {
 	}
 	
 	/**
-	 * ×¢²á
+	 * æ³¨å†Œ
 	 * @return
 	 */
 	@RequestMapping(value="/register",method=RequestMethod.POST)
@@ -109,7 +110,7 @@ public class UserController {
 	}
 	
 	/**
-	 * ÖØÖÃÃÜÂë
+	 * é‡ç½®å¯†ç 
 	 * 
 	 */
 	@RequestMapping(value="/restpwd",method=RequestMethod.POST)
@@ -122,7 +123,7 @@ public class UserController {
 	}
 	
 	/**
-	 * »ñÈ¡¶ÌĞÅÑéÖ¤Âë
+	 * è·å–çŸ­ä¿¡éªŒè¯ç 
 	 * @param smsCode
 	 * 
 	 */
@@ -147,7 +148,7 @@ public class UserController {
 	}
 	
 	/**
-	 * Ğ£Ñé¶ÌĞÅÑéÖ¤Âë
+	 * æ ¡éªŒçŸ­ä¿¡éªŒè¯ç 
 	 * 
 	 */
 	public void checkSmsCode(String smsCode,String phone) {
@@ -162,7 +163,7 @@ public class UserController {
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÖ»úºÅÊÇ·ñÔÚÒ»·ÖÖÓÖ®ÄÚÒÑ·¢ËÍ¹ıÑéÖ¤Âë
+	 * åˆ¤æ–­æ‰‹æœºå·æ˜¯å¦åœ¨ä¸€åˆ†é’Ÿä¹‹å†…å·²å‘é€è¿‡éªŒè¯ç 
 	 * @param phone
 	 */
 
@@ -175,7 +176,7 @@ public class UserController {
 		}
 	}
 	/**
-	 * Ğ£ÑéÍ¼Æ¬ÑéÖ¤Âë
+	 * æ ¡éªŒå›¾ç‰‡éªŒè¯ç 
 	 * @param imgCode
 	 */
 
@@ -194,7 +195,7 @@ public class UserController {
 	}
 	
 	/**
-	 * Ğ£ÑéÓÊÏäÊÇ·ñÎ¨Ò»
+	 * æ ¡éªŒé‚®ç®±æ˜¯å¦å”¯ä¸€
 	 * 
 	 */
 	@RequestMapping(value="/existemail",method=RequestMethod.POST)
@@ -222,28 +223,28 @@ public class UserController {
 		return "smscode:" + phone;
 	}
 	/**
-	 * »ñÈ¡Í¼Æ¬ÑéÖ¤Âë
+	 * è·å–å›¾ç‰‡éªŒè¯ç 
 	 * 
 	 */
 	@RequestMapping(value="/imgcode",method=RequestMethod.GET)
 	@ResponseBody
 	public void getImgcode(HttpServletResponse response)throws IOException{
-		//ÉèÖÃÏàÓ¦ÀàĞÍ
+		//è®¾ç½®ç›¸åº”ç±»å‹
 		response.setContentType("image/jpg");
-		//»ñÈ¡´´½¨ÑéÖ¤Âë¹¤¾ßÀàĞÍ
+		//è·å–åˆ›å»ºéªŒè¯ç å·¥å…·ç±»å‹
 		CreateYZMCodeUtils yzm =CreateYZMCodeUtils.getInstance();
-		//»ñÈ¡Éú³ÉµÄÑéÖ¤Âë×Ö·û´®
+		//è·å–ç”Ÿæˆçš„éªŒè¯ç å­—ç¬¦ä¸²
 		String imgCode =yzm.getCreateYZMCode();
-		//½«imgCode·ÅÈëredisÖĞ
+		//å°†imgCodeæ”¾å…¥redisä¸­
 		this.redisService.set(this.getImgcodeKey(), imgCode, 60 * 2);
 		LOG.debug("{} {}",this.request.getSession().getId(),imgCode);
-		//»ñÈ¡ÑéÖ¤ÂëÍ¼Æ¬
+		//è·å–éªŒè¯ç å›¾ç‰‡
 		BufferedImage img = yzm.getCreateYZMImg(imgCode);
-		//Í¨¹ıImageIOĞ´³öÍ¼Æ¬
+		//é€šè¿‡ImageIOå†™å‡ºå›¾ç‰‡
 		ImageIO.write(img,"jpg", response.getOutputStream());
 	}
 	/**
-	 * µÇ³ö
+	 * ç™»å‡º
 	 * 
 	 */
 	@RequestMapping(value = "/logout",method = RequestMethod.POST)
@@ -255,10 +256,10 @@ public class UserController {
 	}
 	
 	/**
-	 * ÊÖ»úºÅÑéÖ¤
+	 * æ‰‹æœºå·éªŒè¯
 	 * 
 	 */
-	@RequestMapping(value = "exist",method = RequestMethod.POST)
+	@RequestMapping(value = "/exist",method = RequestMethod.POST)
 	@ResponseBody
 	public void exist(String phone) {
 		boolean b = this.usersService.isUsedPhone(phone);
@@ -266,4 +267,20 @@ public class UserController {
 			throw new PhoneBeUsedException();
 		}
 	}
+	@RequestMapping(value="/Administrator",method=RequestMethod.GET)
+	@ResponseBody
+	public JSONObject Administrator(long userId) {
+		boolean isAdministrator=false;
+		
+		isAdministrator = this.usersService.isAdministrator(userId);
+		JSONObject jo = new JSONObject();
+		jo.put("Administrator", isAdministrator);
+		return jo;
+	}
+	@RequestMapping(value="/Administrator",method=RequestMethod.POST)
+	@ResponseBody
+	public void Administrator(boolean Administrator,long userId) {
+		this.usersService.setAdministrator(userId,Administrator);
+	}
 }
+
