@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ExplorerDao">
+    <select id="listVideo" resultType="com.dao.bean.MonitorVideo">
+       select * 
+       from monitorvideo m
+       where 
+       m.mptIP '%'+@condition+'%'or m.mptId '%'+@condition+'%'or m.startTime like '%'+@condition+'%'
+       order by mVidId desc;
+    </select>
+    <select id="listImage" resultType="com.dao.bean.ShotImage">
+       select *
+       from shotiamge s
+       where
+       
+    </select>
+    
+</mapper>
